@@ -1,171 +1,198 @@
-# 🏗️ Pipeline ETL con Python y MySQL
+# ETL Python: CSV → MySQL
 
-## 🧠 Descripción
-Este proyecto implementa un **pipeline ETL (Extract, Transform, Load)** utilizando **Python y MySQL**, simulando un flujo de datos real bajo buenas prácticas de **Data Engineering**.
-
-El objetivo es extraer datos (reales o sintéticos), transformarlos y cargarlos en una base de datos MySQL, manteniendo separación de responsabilidades, control de configuración, logging y versionado.
-
-El proyecto está orientado a demostrar un **nivel intermedio** de conocimientos en pipelines de datos.
+## Proyecto de Data Engineering
+**Caso práctico de ETL local con Python y MySQL**
 
 ---
 
-## 🏗️ Arquitectura del Pipeline
-El flujo del pipeline sigue una estructura clara y desacoplada:
+## 📋 Descripción
 
-Generación / Fuente de Datos
-↓
-Extracción (CSV / Datos sintéticos)
-↓
-Transformación con Python
-↓
-Carga a MySQL
-↓
-Persistencia y Logging
-
-yaml
-Copiar código
+Este proyecto implementa un pipeline ETL completo que:
+- **Extract**: Lee datos de un archivo CSV sintético
+- **Transform**: Aplica limpieza, validaciones y transformaciones
+- **Load**: Carga los datos procesados a una base de datos MySQL local
 
 ---
 
-## 🚀 Funcionalidades principales
-- Generación de datos sintéticos para pruebas
-- Extracción de datos desde archivos CSV
-- Transformaciones con Python
-- Creación de tablas en MySQL mediante scripts SQL
-- Carga automatizada de datos a MySQL
-- Registro de eventos y errores mediante logging
-- Configuración desacoplada mediante archivo de configuración
-- Manejo de variables de entorno
+## 🛠️ Requisitos Previos
+
+### 1. Instalar MySQL Server
+
+#### Windows
+```bash
+# Opción 1: Descargar instalador desde
+# https://dev.mysql.com/downloads/mysql/
+
+# Opción 2: Usando Chocolatey
+choco install mysql
+```
+
+#### macOS
+```bash
+# Usando Homebrew
+brew install mysql
+brew services start mysql
+```
+
+#### Linux (Ubuntu/Debian)
+```bash
+sudo apt update
+sudo apt install mysql-server
+sudo systemctl start mysql
+sudo systemctl enable mysql
+```
+
+### 2. Configurar MySQL después de instalación
+
+```bash
+# Ejecutar configuración segura
+sudo mysql_secure_installation
+
+# Conectarse a MySQL como root
+mysql -u root -p
+```
+
+### 3. Crear usuario y base de datos para el proyecto
+
+Ejecuta estos comandos dentro de MySQL:
+
+```sql
+-- Crear la base de datos
+CREATE DATABASE etl_ventas;
+
+-- Crear usuario específico para el proyecto
+CREATE USER 'etl_user'@'localhost' IDENTIFIED BY 'etl_password_2024';
+
+-- Otorgar permisos
+GRANT ALL PRIVILEGES ON etl_ventas.* TO 'etl_user'@'localhost';
+FLUSH PRIVILEGES;
+
+-- Verificar
+SHOW DATABASES;
+SELECT User, Host FROM mysql.user;
+```
 
 ---
 
-## 🛠️ Tecnologías utilizadas
-- **Python** – desarrollo del pipeline ETL
-- **MySQL** – base de datos relacional
-- **SQL** – creación y gestión de tablas
-- **Visual Studio Code** – entorno de desarrollo
-- **Git & GitHub** – control de versiones
-- **Virtual Environment (venv)** – aislamiento de dependencias
+## 🐍 Configuración del Entorno Python
+
+### Crear entorno virtual
+
+```bash
+# Crear entorno
+python -m venv venv
+
+# Activar (Windows)
+venv\Scripts\activate
+
+# Activar (Linux/macOS)
+source venv/bin/activate
+```
+
+### Instalar dependencias
+
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
-## 📂 Estructura del proyecto
+## 📁 Estructura del Proyecto
 
+```
 etl_mysql_project/
 │
+├── README.md                 # Este archivo
+├── requirements.txt          # Dependencias Python
+├── config.py                 # Configuración de conexión
+├── generate_synthetic_data.py # Generador de datos CSV
+├── etl_pipeline.py           # Pipeline ETL principal
+│
 ├── data/
-│ ├── ventas_raw.csv # Datos de entrada (raw)
-│ └── .gitkeep
+│   └── ventas_raw.csv        # Datos sintéticos (generado)
 │
 ├── logs/
-│ ├── etl.log # Logs del pipeline
-│ └── .gitkeep
+│   └── etl.log               # Logs del proceso
 │
-├── sql/
-│ └── create_tables.sql # Script SQL para crear tablas
-│
-├── venv/ # Entorno virtual (no versionado)
-│
-├── config.py # Configuración del proyecto
-├── etl_pipeline.py # Script principal del pipeline ETL
-├── generate_synthetic_data.py# Generación de datos de prueba
-├── requirements.txt # Dependencias del proyecto
-├── .env.example # Variables de entorno de ejemplo
-└── README.md
-
-yaml
-Copiar código
+└── sql/
+    └── create_tables.sql     # Scripts DDL
+```
 
 ---
 
-## ⚙️ Configuración del entorno
+## 🚀 Ejecución
 
-### 1️⃣ Crear entorno virtual
+### Paso 1: Generar datos sintéticos
 ```bash
-python -m venv venv
-2️⃣ Activar entorno virtual
-Windows
-
-bash
-Copiar código
-venv\Scripts\activate
-Linux / Mac
-
-bash
-Copiar código
-source venv/bin/activate
-3️⃣ Instalar dependencias
-bash
-Copiar código
-pip install -r requirements.txt
-4️⃣ Configurar variables de entorno
-Crear un archivo .env basado en .env.example y completar los valores:
-
-env
-Copiar código
-DB_HOST=localhost
-DB_PORT=3306
-DB_NAME=nombre_base_datos
-DB_USER=usuario
-DB_PASSWORD=password
-🗄️ Base de datos MySQL
-Antes de ejecutar el pipeline:
-
-Crear la base de datos en MySQL
-
-Ejecutar el script de creación de tablas:
-
-sql
-Copiar código
-sql/create_tables.sql
-▶️ Ejecución del pipeline
-Generar datos sintéticos (opcional)
-bash
-Copiar código
 python generate_synthetic_data.py
-Ejecutar el pipeline ETL
-bash
-Copiar código
+```
+
+### Paso 2: Ejecutar el ETL
+```bash
 python etl_pipeline.py
-Durante la ejecución:
+```
 
-Los datos son procesados y cargados en MySQL
+### Paso 3: Verificar en MySQL
+```bash
+mysql -u etl_user -p etl_ventas
 
-Los eventos y errores quedan registrados en logs/etl.log
+# Dentro de MySQL
+SELECT COUNT(*) FROM ventas;
+SELECT * FROM ventas LIMIT 10;
+```
 
-📊 Logging y monitoreo
-El pipeline implementa logging para:
+---
 
-Inicio y fin del proceso ETL
+## 🔧 Troubleshooting
 
-Errores de conexión
+### Error de conexión MySQL
+```
+mysql.connector.errors.InterfaceError: 2003 (HY000): Can't connect to MySQL server
+```
+**Solución**: Verificar que MySQL esté corriendo
+```bash
+# Linux
+sudo systemctl status mysql
 
-Fallos en transformación o carga
+# macOS
+brew services list
 
-Validaciones básicas
+# Windows
+net start mysql
+```
 
-Esto permite trazabilidad y facilita el debugging del proceso.
+### Error de autenticación
+```
+Access denied for user 'etl_user'@'localhost'
+```
+**Solución**: Recrear usuario con contraseña correcta
+```sql
+DROP USER IF EXISTS 'etl_user'@'localhost';
+CREATE USER 'etl_user'@'localhost' IDENTIFIED BY 'etl_password_2024';
+GRANT ALL PRIVILEGES ON etl_ventas.* TO 'etl_user'@'localhost';
+FLUSH PRIVILEGES;
+```
 
-📈 Aprendizajes y buenas prácticas
-Diseño de pipelines ETL desacoplados
+---
 
-Uso de scripts SQL para control de esquema
+## 📊 Modelo de Datos
 
-Manejo de variables de entorno
+### Tabla: `ventas`
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| id | INT | Primary Key |
+| fecha | DATE | Fecha de venta |
+| producto | VARCHAR(100) | Nombre del producto |
+| categoria | VARCHAR(50) | Categoría |
+| cantidad | INT | Unidades vendidas |
+| precio_unitario | DECIMAL(10,2) | Precio por unidad |
+| total | DECIMAL(12,2) | Total de la venta |
+| cliente_id | VARCHAR(20) | ID del cliente |
+| region | VARCHAR(50) | Región geográfica |
+| vendedor | VARCHAR(100) | Nombre del vendedor |
+| created_at | TIMESTAMP | Fecha de carga |
 
-Implementación de logging en procesos de datos
+---
 
-Separación entre datos, lógica y configuración
-
-Simulación de flujos reales de Data Engineering
-
-🎯 Enfoque profesional
-Este proyecto está orientado a roles como:
-
-Data Engineer
-
-Analista de Datos Técnico
-
-Desarrollador Python enfocado en datos
-
-Presenta un enfoque práctico y realista, más allá de ejercicios académicos.
+## 👨‍🏫 Autor
+Proyecto creado para fines educativos - Data Engineering
