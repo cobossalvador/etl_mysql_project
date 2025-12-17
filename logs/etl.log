@@ -1,0 +1,448 @@
+2025-12-13 11:02:51 | INFO     | ************************************************************
+2025-12-13 11:02:51 | INFO     | INICIO DEL PIPELINE ETL
+2025-12-13 11:02:51 | INFO     | Execution ID: 4339f681
+2025-12-13 11:02:51 | INFO     | Inicio: 2025-12-13 11:02:51
+2025-12-13 11:02:51 | INFO     | ************************************************************
+2025-12-13 11:02:51 | INFO     | ============================================================
+2025-12-13 11:02:51 | INFO     | FASE: EXTRACT
+2025-12-13 11:02:51 | INFO     | ============================================================
+2025-12-13 11:02:51 | INFO     | Leyendo archivo: data\ventas_raw.csv
+2025-12-13 11:02:51 | INFO     |    Registros leídos: 10,050
+2025-12-13 11:02:51 | INFO     |    Columnas: 9
+2025-12-13 11:02:51 | INFO     |    Tamaño archivo: 0.91 MB
+2025-12-13 11:02:51 | INFO     |    Columnas: ['fecha', 'producto', 'categoria', 'cantidad', 'precio_unitario', 'total', 'cliente_id', 'region', 'vendedor']
+2025-12-13 11:02:51 | DEBUG    | Tipos de datos originales:
+2025-12-13 11:02:51 | DEBUG    |    fecha: object
+2025-12-13 11:02:51 | DEBUG    |    producto: object
+2025-12-13 11:02:51 | DEBUG    |    categoria: object
+2025-12-13 11:02:51 | DEBUG    |    cantidad: int64
+2025-12-13 11:02:51 | DEBUG    |    precio_unitario: float64
+2025-12-13 11:02:51 | DEBUG    |    total: float64
+2025-12-13 11:02:51 | DEBUG    |    cliente_id: object
+2025-12-13 11:02:51 | DEBUG    |    region: object
+2025-12-13 11:02:51 | DEBUG    |    vendedor: object
+2025-12-13 11:02:51 | INFO     | ============================================================
+2025-12-13 11:02:51 | INFO     | FASE: TRANSFORM
+2025-12-13 11:02:51 | INFO     | ============================================================
+2025-12-13 11:02:51 | INFO     |    Strings limpiados: 402
+2025-12-13 11:02:54 | INFO     |    Fechas convertidas (problemas: 0)
+2025-12-13 11:02:54 | INFO     |    Valores negativos corregidos: 50
+2025-12-13 11:02:54 | DEBUG    |    Nulls por columna:
+2025-12-13 11:02:54 | INFO     |    Valores nulos tratados: 0
+2025-12-13 11:02:54 | INFO     |    Duplicados eliminados: 50
+2025-12-13 11:02:54 | INFO     |    Registros rechazados: 0
+2025-12-13 11:02:54 | INFO     |    Metadatos añadidos
+2025-12-13 11:02:54 | INFO     | ----------------------------------------
+2025-12-13 11:02:54 | INFO     | Resumen de Transformación:
+2025-12-13 11:02:54 | INFO     |    Registros originales: 10,050
+2025-12-13 11:02:54 | INFO     |    Registros finales: 10,000
+2025-12-13 11:02:54 | INFO     |    Tasa de rechazo: 0.00%
+2025-12-13 11:02:54 | INFO     | ============================================================
+2025-12-13 11:02:54 | INFO     | FASE: LOAD
+2025-12-13 11:02:54 | INFO     | ============================================================
+2025-12-13 11:02:54 | INFO     | Conectando a MySQL: localhost:3306
+2025-12-13 11:02:54 | INFO     | ✅ Conexión exitosa - MySQL Server v8.0.44
+2025-12-13 11:02:54 | INFO     |    Base de datos: etl_ventas
+2025-12-13 11:02:54 | INFO     | Verificando/creando tablas...
+2025-12-13 11:02:54 | ERROR    | Error ejecutando query: 1193 (HY000): Unknown system variable 'cutoff_date'
+2025-12-13 11:02:54 | WARNING  | SQL Warning: 1193 (HY000): Unknown system variable 'cutoff_date'
+2025-12-13 11:02:54 | ERROR    | Error ejecutando query: 1146 (42S02): Table 'etl_ventas.ventas' doesn't exist
+2025-12-13 11:02:54 | WARNING  | SQL Warning: 1146 (42S02): Table 'etl_ventas.ventas' doesn't exist
+2025-12-13 11:02:54 | ERROR    | Error ejecutando query: 1054 (42S22): Unknown column 'cutoff_date' in 'field list'
+2025-12-13 11:02:54 | WARNING  | SQL Warning: 1054 (42S22): Unknown column 'cutoff_date' in 'field list'
+2025-12-13 11:02:54 | ERROR    | Error ejecutando query: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END //
+
+DELIMITER' at line 1
+2025-12-13 11:02:54 | WARNING  | SQL Warning: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END //
+
+DELIMITER' at line 1
+2025-12-13 11:02:54 | INFO     |    Tablas verificadas/creadas
+2025-12-13 11:02:54 | INFO     | Truncando tabla ventas...
+2025-12-13 11:02:54 | ERROR    | Error ejecutando query: 1146 (42S02): Table 'etl_ventas.ventas' doesn't exist
+2025-12-13 11:02:54 | INFO     | Conexión a MySQL cerrada
+2025-12-13 11:02:54 | ERROR    | ❌ ERROR EN ETL: 1146 (42S02): Table 'etl_ventas.ventas' doesn't exist
+2025-12-13 11:02:54 | INFO     | ************************************************************
+2025-12-13 11:02:54 | INFO     | RESUMEN DE EJECUCIÓN
+2025-12-13 11:02:54 | INFO     | ************************************************************
+2025-12-13 11:02:54 | INFO     | Estado: FAILED
+2025-12-13 11:02:54 | INFO     | Duración total: 2.27 segundos
+2025-12-13 11:02:54 | INFO     |    EXTRACT: 0.02s
+2025-12-13 11:02:54 | INFO     |    TRANSFORM: 2.11s
+2025-12-13 11:02:54 | INFO     | ************************************************************
+2025-12-13 11:02:54 | ERROR    | Error fatal: 1146 (42S02): Table 'etl_ventas.ventas' doesn't exist
+Traceback (most recent call last):
+  File "C:\Users\skereh\Downloads\etl_mysql_project\etl_pipeline.py", line 680, in <module>
+    result = run_etl()
+  File "C:\Users\skereh\Downloads\etl_mysql_project\etl_pipeline.py", line 629, in run_etl
+    inserted, rejected_count = load(df_clean, rejected, execution_id)
+                               ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\skereh\Downloads\etl_mysql_project\etl_pipeline.py", line 512, in load
+    conn.execute("TRUNCATE TABLE ventas")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\skereh\Downloads\etl_mysql_project\etl_pipeline.py", line 126, in execute
+    self.cursor.execute(query, params)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\skereh\Downloads\etl_mysql_project\venv\Lib\site-packages\mysql\connector\cursor.py", line 617, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\skereh\Downloads\etl_mysql_project\venv\Lib\site-packages\mysql\connector\opentelemetry\context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "C:\Users\skereh\Downloads\etl_mysql_project\venv\Lib\site-packages\mysql\connector\connection.py", line 843, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "C:\Users\skereh\Downloads\etl_mysql_project\venv\Lib\site-packages\mysql\connector\connection.py", line 620, in _handle_result
+    raise get_exception(packet)
+mysql.connector.errors.ProgrammingError: 1146 (42S02): Table 'etl_ventas.ventas' doesn't exist
+2025-12-13 11:04:20 | INFO     | ************************************************************
+2025-12-13 11:04:20 | INFO     | INICIO DEL PIPELINE ETL
+2025-12-13 11:04:20 | INFO     | Execution ID: b4a3961a
+2025-12-13 11:04:20 | INFO     | Inicio: 2025-12-13 11:04:20
+2025-12-13 11:04:20 | INFO     | ************************************************************
+2025-12-13 11:04:20 | INFO     | ============================================================
+2025-12-13 11:04:20 | INFO     | FASE: EXTRACT
+2025-12-13 11:04:20 | INFO     | ============================================================
+2025-12-13 11:04:20 | INFO     | Leyendo archivo: data\ventas_raw.csv
+2025-12-13 11:04:20 | INFO     |    Registros leídos: 10,050
+2025-12-13 11:04:20 | INFO     |    Columnas: 9
+2025-12-13 11:04:20 | INFO     |    Tamaño archivo: 0.91 MB
+2025-12-13 11:04:20 | INFO     |    Columnas: ['fecha', 'producto', 'categoria', 'cantidad', 'precio_unitario', 'total', 'cliente_id', 'region', 'vendedor']
+2025-12-13 11:04:20 | DEBUG    | Tipos de datos originales:
+2025-12-13 11:04:20 | DEBUG    |    fecha: object
+2025-12-13 11:04:20 | DEBUG    |    producto: object
+2025-12-13 11:04:20 | DEBUG    |    categoria: object
+2025-12-13 11:04:20 | DEBUG    |    cantidad: int64
+2025-12-13 11:04:20 | DEBUG    |    precio_unitario: float64
+2025-12-13 11:04:20 | DEBUG    |    total: float64
+2025-12-13 11:04:20 | DEBUG    |    cliente_id: object
+2025-12-13 11:04:20 | DEBUG    |    region: object
+2025-12-13 11:04:20 | DEBUG    |    vendedor: object
+2025-12-13 11:04:20 | INFO     | ============================================================
+2025-12-13 11:04:20 | INFO     | FASE: TRANSFORM
+2025-12-13 11:04:20 | INFO     | ============================================================
+2025-12-13 11:04:20 | INFO     |    Strings limpiados: 402
+2025-12-13 11:04:23 | INFO     |    Fechas convertidas (problemas: 0)
+2025-12-13 11:04:23 | INFO     |    Valores negativos corregidos: 50
+2025-12-13 11:04:23 | DEBUG    |    Nulls por columna:
+2025-12-13 11:04:23 | INFO     |    Valores nulos tratados: 0
+2025-12-13 11:04:23 | INFO     |    Duplicados eliminados: 50
+2025-12-13 11:04:23 | INFO     |    Registros rechazados: 0
+2025-12-13 11:04:23 | INFO     |    Metadatos añadidos
+2025-12-13 11:04:23 | INFO     | ----------------------------------------
+2025-12-13 11:04:23 | INFO     | Resumen de Transformación:
+2025-12-13 11:04:23 | INFO     |    Registros originales: 10,050
+2025-12-13 11:04:23 | INFO     |    Registros finales: 10,000
+2025-12-13 11:04:23 | INFO     |    Tasa de rechazo: 0.00%
+2025-12-13 11:04:23 | INFO     | ============================================================
+2025-12-13 11:04:23 | INFO     | FASE: LOAD
+2025-12-13 11:04:23 | INFO     | ============================================================
+2025-12-13 11:04:23 | INFO     | Conectando a MySQL: localhost:3306
+2025-12-13 11:04:23 | INFO     | ✅ Conexión exitosa - MySQL Server v8.0.44
+2025-12-13 11:04:23 | INFO     |    Base de datos: etl_ventas
+2025-12-13 11:04:23 | INFO     | Verificando/creando tablas...
+2025-12-13 11:04:23 | ERROR    | Error ejecutando query: 1050 (42S01): Table 'etl_log' already exists
+2025-12-13 11:04:23 | ERROR    | Error ejecutando query: 1050 (42S01): Table 'ventas_rejected' already exists
+2025-12-13 11:04:23 | ERROR    | Error ejecutando query: 1193 (HY000): Unknown system variable 'cutoff_date'
+2025-12-13 11:04:23 | WARNING  | SQL Warning: 1193 (HY000): Unknown system variable 'cutoff_date'
+2025-12-13 11:04:23 | ERROR    | Error ejecutando query: 1146 (42S02): Table 'etl_ventas.ventas' doesn't exist
+2025-12-13 11:04:23 | WARNING  | SQL Warning: 1146 (42S02): Table 'etl_ventas.ventas' doesn't exist
+2025-12-13 11:04:23 | ERROR    | Error ejecutando query: 1054 (42S22): Unknown column 'cutoff_date' in 'field list'
+2025-12-13 11:04:23 | WARNING  | SQL Warning: 1054 (42S22): Unknown column 'cutoff_date' in 'field list'
+2025-12-13 11:04:23 | ERROR    | Error ejecutando query: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END //
+
+DELIMITER' at line 1
+2025-12-13 11:04:23 | WARNING  | SQL Warning: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END //
+
+DELIMITER' at line 1
+2025-12-13 11:04:23 | INFO     |    Tablas verificadas/creadas
+2025-12-13 11:04:23 | INFO     | Truncando tabla ventas...
+2025-12-13 11:04:23 | ERROR    | Error ejecutando query: 1146 (42S02): Table 'etl_ventas.ventas' doesn't exist
+2025-12-13 11:04:23 | INFO     | Conexión a MySQL cerrada
+2025-12-13 11:04:23 | ERROR    | ❌ ERROR EN ETL: 1146 (42S02): Table 'etl_ventas.ventas' doesn't exist
+2025-12-13 11:04:23 | INFO     | ************************************************************
+2025-12-13 11:04:23 | INFO     | RESUMEN DE EJECUCIÓN
+2025-12-13 11:04:23 | INFO     | ************************************************************
+2025-12-13 11:04:23 | INFO     | Estado: FAILED
+2025-12-13 11:04:23 | INFO     | Duración total: 2.18 segundos
+2025-12-13 11:04:23 | INFO     |    EXTRACT: 0.01s
+2025-12-13 11:04:23 | INFO     |    TRANSFORM: 2.10s
+2025-12-13 11:04:23 | INFO     | ************************************************************
+2025-12-13 11:04:23 | ERROR    | Error fatal: 1146 (42S02): Table 'etl_ventas.ventas' doesn't exist
+Traceback (most recent call last):
+  File "C:\Users\skereh\Downloads\etl_mysql_project\etl_pipeline.py", line 680, in <module>
+    result = run_etl()
+  File "C:\Users\skereh\Downloads\etl_mysql_project\etl_pipeline.py", line 629, in run_etl
+    inserted, rejected_count = load(df_clean, rejected, execution_id)
+                               ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\skereh\Downloads\etl_mysql_project\etl_pipeline.py", line 512, in load
+    conn.execute("TRUNCATE TABLE ventas")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\skereh\Downloads\etl_mysql_project\etl_pipeline.py", line 126, in execute
+    self.cursor.execute(query, params)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\skereh\Downloads\etl_mysql_project\venv\Lib\site-packages\mysql\connector\cursor.py", line 617, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\skereh\Downloads\etl_mysql_project\venv\Lib\site-packages\mysql\connector\opentelemetry\context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "C:\Users\skereh\Downloads\etl_mysql_project\venv\Lib\site-packages\mysql\connector\connection.py", line 843, in cmd_query
+    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
+  File "C:\Users\skereh\Downloads\etl_mysql_project\venv\Lib\site-packages\mysql\connector\connection.py", line 620, in _handle_result
+    raise get_exception(packet)
+mysql.connector.errors.ProgrammingError: 1146 (42S02): Table 'etl_ventas.ventas' doesn't exist
+2025-12-13 11:05:39 | INFO     | ************************************************************
+2025-12-13 11:05:39 | INFO     | INICIO DEL PIPELINE ETL
+2025-12-13 11:05:39 | INFO     | Execution ID: dbb06b07
+2025-12-13 11:05:39 | INFO     | Inicio: 2025-12-13 11:05:39
+2025-12-13 11:05:39 | INFO     | ************************************************************
+2025-12-13 11:05:39 | INFO     | ============================================================
+2025-12-13 11:05:39 | INFO     | FASE: EXTRACT
+2025-12-13 11:05:39 | INFO     | ============================================================
+2025-12-13 11:05:39 | INFO     | Leyendo archivo: data\ventas_raw.csv
+2025-12-13 11:05:39 | INFO     |    Registros leídos: 10,050
+2025-12-13 11:05:39 | INFO     |    Columnas: 9
+2025-12-13 11:05:39 | INFO     |    Tamaño archivo: 0.91 MB
+2025-12-13 11:05:39 | INFO     |    Columnas: ['fecha', 'producto', 'categoria', 'cantidad', 'precio_unitario', 'total', 'cliente_id', 'region', 'vendedor']
+2025-12-13 11:05:39 | DEBUG    | Tipos de datos originales:
+2025-12-13 11:05:39 | DEBUG    |    fecha: object
+2025-12-13 11:05:39 | DEBUG    |    producto: object
+2025-12-13 11:05:39 | DEBUG    |    categoria: object
+2025-12-13 11:05:39 | DEBUG    |    cantidad: int64
+2025-12-13 11:05:39 | DEBUG    |    precio_unitario: float64
+2025-12-13 11:05:39 | DEBUG    |    total: float64
+2025-12-13 11:05:39 | DEBUG    |    cliente_id: object
+2025-12-13 11:05:39 | DEBUG    |    region: object
+2025-12-13 11:05:39 | DEBUG    |    vendedor: object
+2025-12-13 11:05:39 | INFO     | ============================================================
+2025-12-13 11:05:39 | INFO     | FASE: TRANSFORM
+2025-12-13 11:05:39 | INFO     | ============================================================
+2025-12-13 11:05:39 | INFO     |    Strings limpiados: 402
+2025-12-13 11:05:41 | INFO     |    Fechas convertidas (problemas: 0)
+2025-12-13 11:05:41 | INFO     |    Valores negativos corregidos: 50
+2025-12-13 11:05:41 | DEBUG    |    Nulls por columna:
+2025-12-13 11:05:41 | INFO     |    Valores nulos tratados: 0
+2025-12-13 11:05:41 | INFO     |    Duplicados eliminados: 50
+2025-12-13 11:05:41 | INFO     |    Registros rechazados: 0
+2025-12-13 11:05:41 | INFO     |    Metadatos añadidos
+2025-12-13 11:05:41 | INFO     | ----------------------------------------
+2025-12-13 11:05:41 | INFO     | Resumen de Transformación:
+2025-12-13 11:05:41 | INFO     |    Registros originales: 10,050
+2025-12-13 11:05:41 | INFO     |    Registros finales: 10,000
+2025-12-13 11:05:41 | INFO     |    Tasa de rechazo: 0.00%
+2025-12-13 11:05:41 | INFO     | ============================================================
+2025-12-13 11:05:41 | INFO     | FASE: LOAD
+2025-12-13 11:05:41 | INFO     | ============================================================
+2025-12-13 11:05:41 | INFO     | Conectando a MySQL: localhost:3306
+2025-12-13 11:05:41 | INFO     | ✅ Conexión exitosa - MySQL Server v8.0.44
+2025-12-13 11:05:41 | INFO     |    Base de datos: etl_ventas
+2025-12-13 11:05:41 | INFO     | Verificando/creando tablas...
+2025-12-13 11:05:41 | ERROR    | Error ejecutando query: 1050 (42S01): Table 'etl_log' already exists
+2025-12-13 11:05:41 | ERROR    | Error ejecutando query: 1050 (42S01): Table 'ventas_rejected' already exists
+2025-12-13 11:05:41 | ERROR    | Error ejecutando query: 1193 (HY000): Unknown system variable 'cutoff_date'
+2025-12-13 11:05:41 | WARNING  | SQL Warning: 1193 (HY000): Unknown system variable 'cutoff_date'
+2025-12-13 11:05:41 | ERROR    | Error ejecutando query: 1054 (42S22): Unknown column 'cutoff_date' in 'where clause'
+2025-12-13 11:05:41 | WARNING  | SQL Warning: 1054 (42S22): Unknown column 'cutoff_date' in 'where clause'
+2025-12-13 11:05:41 | ERROR    | Error ejecutando query: 1054 (42S22): Unknown column 'cutoff_date' in 'field list'
+2025-12-13 11:05:41 | WARNING  | SQL Warning: 1054 (42S22): Unknown column 'cutoff_date' in 'field list'
+2025-12-13 11:05:41 | ERROR    | Error ejecutando query: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END //
+
+DELIMITER' at line 1
+2025-12-13 11:05:41 | WARNING  | SQL Warning: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END //
+
+DELIMITER' at line 1
+2025-12-13 11:05:41 | INFO     |    Tablas verificadas/creadas
+2025-12-13 11:05:41 | INFO     | Truncando tabla ventas...
+2025-12-13 11:05:41 | INFO     | Insertando 10,000 registros (batch size: 1000)...
+2025-12-13 11:05:41 | DEBUG    |    Progreso: 10.0% (1,000 registros)
+2025-12-13 11:05:42 | DEBUG    |    Progreso: 20.0% (2,000 registros)
+2025-12-13 11:05:42 | DEBUG    |    Progreso: 30.0% (3,000 registros)
+2025-12-13 11:05:42 | DEBUG    |    Progreso: 40.0% (4,000 registros)
+2025-12-13 11:05:42 | DEBUG    |    Progreso: 50.0% (5,000 registros)
+2025-12-13 11:05:42 | DEBUG    |    Progreso: 60.0% (6,000 registros)
+2025-12-13 11:05:42 | DEBUG    |    Progreso: 70.0% (7,000 registros)
+2025-12-13 11:05:42 | DEBUG    |    Progreso: 80.0% (8,000 registros)
+2025-12-13 11:05:42 | DEBUG    |    Progreso: 90.0% (9,000 registros)
+2025-12-13 11:05:42 | DEBUG    |    Progreso: 100.0% (10,000 registros)
+2025-12-13 11:05:42 | INFO     | ✅ Registros insertados: 10,000
+2025-12-13 11:05:42 | INFO     |    Total en tabla ventas: 10,000
+2025-12-13 11:05:42 | INFO     | Conexión a MySQL cerrada
+2025-12-13 11:05:42 | INFO     | ************************************************************
+2025-12-13 11:05:42 | INFO     | RESUMEN DE EJECUCIÓN
+2025-12-13 11:05:42 | INFO     | ************************************************************
+2025-12-13 11:05:42 | INFO     | Estado: COMPLETED
+2025-12-13 11:05:42 | INFO     | Duración total: 2.65 segundos
+2025-12-13 11:05:42 | INFO     |    EXTRACT: 0.01s
+2025-12-13 11:05:42 | INFO     |    TRANSFORM: 2.14s
+2025-12-13 11:05:42 | INFO     |    LOAD: 0.50s
+2025-12-13 11:05:42 | INFO     | ************************************************************
+2025-12-13 11:05:42 | INFO     | ✅ ETL completado exitosamente
+2025-12-13 11:08:50 | INFO     | ************************************************************
+2025-12-13 11:08:50 | INFO     | INICIO DEL PIPELINE ETL
+2025-12-13 11:08:50 | INFO     | Execution ID: 30f34626
+2025-12-13 11:08:50 | INFO     | Inicio: 2025-12-13 11:08:50
+2025-12-13 11:08:50 | INFO     | ************************************************************
+2025-12-13 11:08:50 | INFO     | ============================================================
+2025-12-13 11:08:50 | INFO     | FASE: EXTRACT
+2025-12-13 11:08:50 | INFO     | ============================================================
+2025-12-13 11:08:50 | INFO     | Leyendo archivo: data\ventas_raw.csv
+2025-12-13 11:08:50 | INFO     |    Registros leídos: 10,050
+2025-12-13 11:08:50 | INFO     |    Columnas: 9
+2025-12-13 11:08:50 | INFO     |    Tamaño archivo: 0.91 MB
+2025-12-13 11:08:50 | INFO     |    Columnas: ['fecha', 'producto', 'categoria', 'cantidad', 'precio_unitario', 'total', 'cliente_id', 'region', 'vendedor']
+2025-12-13 11:08:50 | DEBUG    | Tipos de datos originales:
+2025-12-13 11:08:50 | DEBUG    |    fecha: object
+2025-12-13 11:08:50 | DEBUG    |    producto: object
+2025-12-13 11:08:50 | DEBUG    |    categoria: object
+2025-12-13 11:08:50 | DEBUG    |    cantidad: int64
+2025-12-13 11:08:50 | DEBUG    |    precio_unitario: float64
+2025-12-13 11:08:50 | DEBUG    |    total: float64
+2025-12-13 11:08:50 | DEBUG    |    cliente_id: object
+2025-12-13 11:08:50 | DEBUG    |    region: object
+2025-12-13 11:08:50 | DEBUG    |    vendedor: object
+2025-12-13 11:08:50 | INFO     | ============================================================
+2025-12-13 11:08:50 | INFO     | FASE: TRANSFORM
+2025-12-13 11:08:50 | INFO     | ============================================================
+2025-12-13 11:08:50 | INFO     |    Strings limpiados: 402
+2025-12-13 11:08:53 | INFO     |    Fechas convertidas (problemas: 0)
+2025-12-13 11:08:53 | INFO     |    Valores negativos corregidos: 50
+2025-12-13 11:08:53 | DEBUG    |    Nulls por columna:
+2025-12-13 11:08:53 | INFO     |    Valores nulos tratados: 0
+2025-12-13 11:08:53 | INFO     |    Duplicados eliminados: 50
+2025-12-13 11:08:53 | INFO     |    Registros rechazados: 0
+2025-12-13 11:08:53 | INFO     |    Metadatos añadidos
+2025-12-13 11:08:53 | INFO     | ----------------------------------------
+2025-12-13 11:08:53 | INFO     | Resumen de Transformación:
+2025-12-13 11:08:53 | INFO     |    Registros originales: 10,050
+2025-12-13 11:08:53 | INFO     |    Registros finales: 10,000
+2025-12-13 11:08:53 | INFO     |    Tasa de rechazo: 0.00%
+2025-12-13 11:08:53 | INFO     | ============================================================
+2025-12-13 11:08:53 | INFO     | FASE: LOAD
+2025-12-13 11:08:53 | INFO     | ============================================================
+2025-12-13 11:08:53 | INFO     | Conectando a MySQL: localhost:3306
+2025-12-13 11:08:53 | INFO     | ✅ Conexión exitosa - MySQL Server v8.0.44
+2025-12-13 11:08:53 | INFO     |    Base de datos: etl_ventas
+2025-12-13 11:08:53 | INFO     | Verificando/creando tablas...
+2025-12-13 11:08:53 | ERROR    | Error ejecutando query: 1050 (42S01): Table 'etl_log' already exists
+2025-12-13 11:08:53 | ERROR    | Error ejecutando query: 1050 (42S01): Table 'ventas_rejected' already exists
+2025-12-13 11:08:53 | ERROR    | Error ejecutando query: 1193 (HY000): Unknown system variable 'cutoff_date'
+2025-12-13 11:08:53 | WARNING  | SQL Warning: 1193 (HY000): Unknown system variable 'cutoff_date'
+2025-12-13 11:08:53 | ERROR    | Error ejecutando query: 1054 (42S22): Unknown column 'cutoff_date' in 'where clause'
+2025-12-13 11:08:53 | WARNING  | SQL Warning: 1054 (42S22): Unknown column 'cutoff_date' in 'where clause'
+2025-12-13 11:08:53 | ERROR    | Error ejecutando query: 1054 (42S22): Unknown column 'cutoff_date' in 'field list'
+2025-12-13 11:08:53 | WARNING  | SQL Warning: 1054 (42S22): Unknown column 'cutoff_date' in 'field list'
+2025-12-13 11:08:53 | ERROR    | Error ejecutando query: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END //
+
+DELIMITER' at line 1
+2025-12-13 11:08:53 | WARNING  | SQL Warning: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END //
+
+DELIMITER' at line 1
+2025-12-13 11:08:53 | INFO     |    Tablas verificadas/creadas
+2025-12-13 11:08:53 | INFO     | Truncando tabla ventas...
+2025-12-13 11:08:53 | INFO     | Insertando 10,000 registros (batch size: 1000)...
+2025-12-13 11:08:53 | DEBUG    |    Progreso: 10.0% (1,000 registros)
+2025-12-13 11:08:53 | DEBUG    |    Progreso: 20.0% (2,000 registros)
+2025-12-13 11:08:53 | DEBUG    |    Progreso: 30.0% (3,000 registros)
+2025-12-13 11:08:53 | DEBUG    |    Progreso: 40.0% (4,000 registros)
+2025-12-13 11:08:53 | DEBUG    |    Progreso: 50.0% (5,000 registros)
+2025-12-13 11:08:53 | DEBUG    |    Progreso: 60.0% (6,000 registros)
+2025-12-13 11:08:53 | DEBUG    |    Progreso: 70.0% (7,000 registros)
+2025-12-13 11:08:53 | DEBUG    |    Progreso: 80.0% (8,000 registros)
+2025-12-13 11:08:53 | DEBUG    |    Progreso: 90.0% (9,000 registros)
+2025-12-13 11:08:53 | DEBUG    |    Progreso: 100.0% (10,000 registros)
+2025-12-13 11:08:53 | INFO     | ✅ Registros insertados: 10,000
+2025-12-13 11:08:53 | INFO     |    Total en tabla ventas: 10,000
+2025-12-13 11:08:53 | INFO     | Conexión a MySQL cerrada
+2025-12-13 11:08:53 | INFO     | ************************************************************
+2025-12-13 11:08:53 | INFO     | RESUMEN DE EJECUCIÓN
+2025-12-13 11:08:53 | INFO     | ************************************************************
+2025-12-13 11:08:53 | INFO     | Estado: COMPLETED
+2025-12-13 11:08:53 | INFO     | Duración total: 2.65 segundos
+2025-12-13 11:08:53 | INFO     |    EXTRACT: 0.01s
+2025-12-13 11:08:53 | INFO     |    TRANSFORM: 2.12s
+2025-12-13 11:08:53 | INFO     |    LOAD: 0.52s
+2025-12-13 11:08:53 | INFO     | ************************************************************
+2025-12-13 11:08:53 | INFO     | ✅ ETL completado exitosamente
+2025-12-13 11:11:01 | INFO     | ************************************************************
+2025-12-13 11:11:01 | INFO     | INICIO DEL PIPELINE ETL
+2025-12-13 11:11:01 | INFO     | Execution ID: dac14a4a
+2025-12-13 11:11:01 | INFO     | Inicio: 2025-12-13 11:11:01
+2025-12-13 11:11:01 | INFO     | ************************************************************
+2025-12-13 11:11:01 | INFO     | ============================================================
+2025-12-13 11:11:01 | INFO     | FASE: EXTRACT
+2025-12-13 11:11:01 | INFO     | ============================================================
+2025-12-13 11:11:01 | INFO     | Leyendo archivo: data\ventas_raw.csv
+2025-12-13 11:11:01 | INFO     |    Registros leídos: 10,050
+2025-12-13 11:11:01 | INFO     |    Columnas: 9
+2025-12-13 11:11:01 | INFO     |    Tamaño archivo: 0.91 MB
+2025-12-13 11:11:01 | INFO     |    Columnas: ['fecha', 'producto', 'categoria', 'cantidad', 'precio_unitario', 'total', 'cliente_id', 'region', 'vendedor']
+2025-12-13 11:11:01 | DEBUG    | Tipos de datos originales:
+2025-12-13 11:11:01 | DEBUG    |    fecha: object
+2025-12-13 11:11:01 | DEBUG    |    producto: object
+2025-12-13 11:11:01 | DEBUG    |    categoria: object
+2025-12-13 11:11:01 | DEBUG    |    cantidad: int64
+2025-12-13 11:11:01 | DEBUG    |    precio_unitario: float64
+2025-12-13 11:11:01 | DEBUG    |    total: float64
+2025-12-13 11:11:01 | DEBUG    |    cliente_id: object
+2025-12-13 11:11:01 | DEBUG    |    region: object
+2025-12-13 11:11:01 | DEBUG    |    vendedor: object
+2025-12-13 11:11:01 | INFO     | ============================================================
+2025-12-13 11:11:01 | INFO     | FASE: TRANSFORM
+2025-12-13 11:11:01 | INFO     | ============================================================
+2025-12-13 11:11:01 | INFO     |    Strings limpiados: 402
+2025-12-13 11:11:03 | INFO     |    Fechas convertidas (problemas: 0)
+2025-12-13 11:11:03 | INFO     |    Valores negativos corregidos: 50
+2025-12-13 11:11:03 | DEBUG    |    Nulls por columna:
+2025-12-13 11:11:03 | INFO     |    Valores nulos tratados: 0
+2025-12-13 11:11:03 | INFO     |    Duplicados eliminados: 50
+2025-12-13 11:11:03 | INFO     |    Registros rechazados: 0
+2025-12-13 11:11:03 | INFO     |    Metadatos añadidos
+2025-12-13 11:11:03 | INFO     | ----------------------------------------
+2025-12-13 11:11:03 | INFO     | Resumen de Transformación:
+2025-12-13 11:11:03 | INFO     |    Registros originales: 10,050
+2025-12-13 11:11:03 | INFO     |    Registros finales: 10,000
+2025-12-13 11:11:03 | INFO     |    Tasa de rechazo: 0.00%
+2025-12-13 11:11:03 | INFO     | ============================================================
+2025-12-13 11:11:03 | INFO     | FASE: LOAD
+2025-12-13 11:11:03 | INFO     | ============================================================
+2025-12-13 11:11:03 | INFO     | Conectando a MySQL: localhost:3306
+2025-12-13 11:11:03 | INFO     | ✅ Conexión exitosa - MySQL Server v8.0.44
+2025-12-13 11:11:03 | INFO     |    Base de datos: etl_ventas
+2025-12-13 11:11:03 | INFO     | Verificando/creando tablas...
+2025-12-13 11:11:03 | ERROR    | Error ejecutando query: 1050 (42S01): Table 'etl_log' already exists
+2025-12-13 11:11:03 | ERROR    | Error ejecutando query: 1050 (42S01): Table 'ventas_rejected' already exists
+2025-12-13 11:11:03 | ERROR    | Error ejecutando query: 1193 (HY000): Unknown system variable 'cutoff_date'
+2025-12-13 11:11:03 | WARNING  | SQL Warning: 1193 (HY000): Unknown system variable 'cutoff_date'
+2025-12-13 11:11:03 | ERROR    | Error ejecutando query: 1054 (42S22): Unknown column 'cutoff_date' in 'where clause'
+2025-12-13 11:11:03 | WARNING  | SQL Warning: 1054 (42S22): Unknown column 'cutoff_date' in 'where clause'
+2025-12-13 11:11:03 | ERROR    | Error ejecutando query: 1054 (42S22): Unknown column 'cutoff_date' in 'field list'
+2025-12-13 11:11:03 | WARNING  | SQL Warning: 1054 (42S22): Unknown column 'cutoff_date' in 'field list'
+2025-12-13 11:11:03 | ERROR    | Error ejecutando query: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END //
+
+DELIMITER' at line 1
+2025-12-13 11:11:03 | WARNING  | SQL Warning: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'END //
+
+DELIMITER' at line 1
+2025-12-13 11:11:03 | INFO     |    Tablas verificadas/creadas
+2025-12-13 11:11:03 | INFO     | Truncando tabla ventas...
+2025-12-13 11:11:03 | INFO     | Insertando 10,000 registros (batch size: 1000)...
+2025-12-13 11:11:03 | DEBUG    |    Progreso: 10.0% (1,000 registros)
+2025-12-13 11:11:04 | DEBUG    |    Progreso: 20.0% (2,000 registros)
+2025-12-13 11:11:04 | DEBUG    |    Progreso: 30.0% (3,000 registros)
+2025-12-13 11:11:04 | DEBUG    |    Progreso: 40.0% (4,000 registros)
+2025-12-13 11:11:04 | DEBUG    |    Progreso: 50.0% (5,000 registros)
+2025-12-13 11:11:04 | DEBUG    |    Progreso: 60.0% (6,000 registros)
+2025-12-13 11:11:04 | DEBUG    |    Progreso: 70.0% (7,000 registros)
+2025-12-13 11:11:04 | DEBUG    |    Progreso: 80.0% (8,000 registros)
+2025-12-13 11:11:04 | DEBUG    |    Progreso: 90.0% (9,000 registros)
+2025-12-13 11:11:04 | DEBUG    |    Progreso: 100.0% (10,000 registros)
+2025-12-13 11:11:04 | INFO     | ✅ Registros insertados: 10,000
+2025-12-13 11:11:04 | INFO     |    Total en tabla ventas: 10,000
+2025-12-13 11:11:04 | INFO     | Conexión a MySQL cerrada
+2025-12-13 11:11:04 | INFO     | ************************************************************
+2025-12-13 11:11:04 | INFO     | RESUMEN DE EJECUCIÓN
+2025-12-13 11:11:04 | INFO     | ************************************************************
+2025-12-13 11:11:04 | INFO     | Estado: COMPLETED
+2025-12-13 11:11:04 | INFO     | Duración total: 2.72 segundos
+2025-12-13 11:11:04 | INFO     |    EXTRACT: 0.01s
+2025-12-13 11:11:04 | INFO     |    TRANSFORM: 2.18s
+2025-12-13 11:11:04 | INFO     |    LOAD: 0.53s
+2025-12-13 11:11:04 | INFO     | ************************************************************
+2025-12-13 11:11:04 | INFO     | ✅ ETL completado exitosamente
